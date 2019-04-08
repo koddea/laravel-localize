@@ -1,0 +1,42 @@
+{
+    "name": "koddea/laravel-localize",
+    "description": "A Laravel package to total localization management",
+    "keywords": [
+        "",
+        "laravel-localize",
+        "laravel",
+        "translation",
+        "route",
+        "localization",
+        "lang",
+        "php"
+    ],
+    "homepage": "https://github.com/koddea/laravel-localize",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emrah Ar"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Koddea\\Localize\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Koddea\\Localize\\LocalizeServiceProvider"
+            ],
+            "aliases": {
+                "Loc": "Koddea\\Localize\\Facades\\Loc"
+            }
+        }
+    }
+}
