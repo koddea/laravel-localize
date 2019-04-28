@@ -35,6 +35,16 @@ class Localize
         $this->setCacheTime($this->configCacheTime());
     }
 
+    public function getDefaultLocaleName()
+    {
+
+        $locale = $this->app->getLocale();
+        if($this->hasLocale($locale)){
+            return $this->getLocales()[$locale]->name;
+        }
+        return $this->getLocales()->first()->name;
+    }
+
     public function getDefaultLocale(): string
     {
         $locale = $this->app->getLocale();
