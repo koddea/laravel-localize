@@ -96,7 +96,7 @@ class Localize
     {
         $locale = $this->request->segment($this->configUrlLocaleSegment());
         $locales = $this->getLocales();
-        if (strlen($locale) == 2 && is_array($locales) && $locales->has($locale)) {
+        if (strlen($locale) == 2 && $locales->has($locale)) {
             return $locale;
         }
     }

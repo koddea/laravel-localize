@@ -10,8 +10,8 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 
 trait ModelTranslation
 {
-    protected static $autoloadTranslations = null;
 
+    protected static $autoloadTranslations = null;
     protected $activeLocale;
 
     /**
