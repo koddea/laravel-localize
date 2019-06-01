@@ -385,7 +385,7 @@ trait ModelTranslation
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string                                $translationField
      */
-    public function scopeListsTranslations(Builder $query, $translationField)
+    public function scopeListsTranslations(Builder $query, $translationField, $activeLocale=null)
     {
         $translationTable = $this->getTranslationsTable();
         $localeKey = $this->getLocaleKey();
@@ -393,7 +393,7 @@ trait ModelTranslation
         $query
             ->select($this->getTable().'.'.$this->getKeyName(), $translationTable.'.'.$translationField)
             ->leftJoin($translationTable, $translationTable.'.'.$this->getRelationKey(), '=', $this->getTable().'.'.$this->getKeyName())
-            ->where($translationTable.'.'.$localeKey, $this->getActiveLocale());
+            ->where($translationTable.'.'.$localeKey, $activeLocale != null ? $activeLocale:$this->getActiveLocale());
     }
 
     /**
