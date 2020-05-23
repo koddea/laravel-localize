@@ -1,2 +1,2 @@
 # laravel-localize
-A Laravel package to total localization management 
+A Laravel package for localization purposes

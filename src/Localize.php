@@ -47,6 +47,12 @@ class Localize
 
     public function getDefaultLocale(): string
     {
+
+        $locale = \Request::getPreferredLanguage();
+        if($this->hasLocale($locale)){
+            return $locale;
+        }
+
         $locale = $this->app->getLocale();
         if($this->hasLocale($locale)){
             return $locale;
@@ -208,20 +214,6 @@ class Localize
             [$this->configTranslationColMap('value') => $value]
         );
     }
-
-//    public function renderSwitch(string $view = 'localize::switch', array $data = []): HtmlString
-//    {
-//        return new HtmlString(view($view, array_merge($data, [
-//            'loc' => $this,
-//        ]))->render());
-//    }
-
-//    public function setActiveLocale($locale){
-//        $availableLocales = array_keys($this->getAvailableLocales());
-//        if(in_array($locale, $availableLocales)){
-//            Session::put('locale', $locale);
-//        }
-//    }
 
 }
 

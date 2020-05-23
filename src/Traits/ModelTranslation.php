@@ -385,7 +385,7 @@ trait ModelTranslation
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string                                $translationField
      */
-    public function scopeListsTranslations(Builder $query, $translationField, $activeLocale=null)
+    public function scopeListsTranslations(Builder $query, $translationField, $locale = null)
     {
         $translationTable = $this->getTranslationsTable();
         $localeKey = $this->getLocaleKey();
@@ -393,7 +393,7 @@ trait ModelTranslation
         $query
             ->select($this->getTable().'.'.$this->getKeyName(), $translationTable.'.'.$translationField)
             ->leftJoin($translationTable, $translationTable.'.'.$this->getRelationKey(), '=', $this->getTable().'.'.$this->getKeyName())
-            ->where($translationTable.'.'.$localeKey, $activeLocale != null ? $activeLocale:$this->getActiveLocale());
+            ->where($translationTable.'.'.$localeKey, $locale != null ? $locale : $this->getActiveLocale());
     }
 
     /**
@@ -585,21 +585,11 @@ trait ModelTranslation
      */
     public function getActiveLocale()
     {
-
         if (!$this->activeLocale) {
             $locale = app()->make('localize')->getDefaultLocale();
             $this->setActiveLocale($locale);
         }
-
         return $this->activeLocale;
-
-//        $locales = app()->make('localize')->getLocales();
-//        $locale = $locales->filter(function($item) {
-//            return $item->is_default == 1;
-//        })->first();
-//
-//        $this->setActiveLocale($locale->code);
-//        return $locale->code;
     }
 
     /**

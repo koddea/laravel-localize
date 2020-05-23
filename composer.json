@@ -1,6 +1,6 @@
 {
     "name": "koddea/laravel-localize",
-    "description": "A Laravel package to total localization management",
+    "description": "A Laravel package for localization purposes",
     "keywords": [
         "",
         "laravel-localize",
