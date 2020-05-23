@@ -13,11 +13,9 @@
     ],
     "homepage": "https://github.com/koddea/laravel-localize",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Emrah Ar"
-        }
-    ],
+    "authors": [{
+        "name": "Emrah Ar"
+    }],
     "require": {
         "php": "^7.1"
     },
@@ -29,7 +27,11 @@
     "config": {
         "sort-packages": true
     },
+    "minimum-stability": "dev",
     "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        },
         "laravel": {
             "providers": [
                 "Koddea\\Localize\\LocalizeServiceProvider"
