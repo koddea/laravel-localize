@@ -9,7 +9,6 @@ use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Cache\Repository as CacheRepository;
-use Modules\Translation\Setting as TranslationSetting;
 
 class Localize
 {
