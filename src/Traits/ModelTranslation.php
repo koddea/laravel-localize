@@ -26,6 +26,13 @@ trait ModelTranslation
         if ($translation = $this->getTranslationByLocaleKey($locale)) {
             return $translation;
         }
+        
+        if(config('localize.locale.fallback_locale') != null){
+            if ($translation = $this->getTranslationByLocaleKey(config('localize.locale.fallback_locale'))) {
+                return $translation;
+            }
+        }
+        
         return null;
     }
 
