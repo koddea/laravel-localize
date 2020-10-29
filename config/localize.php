@@ -4,6 +4,7 @@ return[
 
     'locale' => [
         'model_name' => false,
+        'fallback_locale' => null,
         'column_mappings' => [
             'code' => false,
             'name' => false,
