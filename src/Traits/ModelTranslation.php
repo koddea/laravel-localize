@@ -19,15 +19,15 @@ trait ModelTranslation
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function getTranslation($locale = null)
+    public function getTranslation($locale = null, $useFallback = true)
     {
         $locale = $locale ?: $this->getActiveLocale();
 
         if ($translation = $this->getTranslationByLocaleKey($locale)) {
             return $translation;
         }
-        
-        if(config('localize.locale.fallback_locale') != null){
+
+        if($useFallback && config('localize.locale.fallback_locale') != null){
             if ($translation = $this->getTranslationByLocaleKey(config('localize.locale.fallback_locale'))) {
                 return $translation;
             }
@@ -162,6 +162,7 @@ trait ModelTranslation
      */
     public function setAttribute($key, $value)
     {
+
         list($attribute, $locale) = $this->getAttributeAndLocale($key);
 
         if ($this->isTranslationAttribute($attribute)) {
@@ -180,7 +181,9 @@ trait ModelTranslation
      */
     public function save(array $options = [])
     {
+
         if ($this->exists && ! $this->isDirty()) {
+
             // If $this->exists and not dirty, parent::save() skips saving and returns
             // false. So we have to save the translations
             if ($this->fireModelEvent('saving') === false) {
@@ -197,6 +200,8 @@ trait ModelTranslation
 
         // We save the translations only if the instance is saved in the database.
         if (parent::save($options)) {
+
+
             return $this->saveTranslations();
         }
 
@@ -209,7 +214,7 @@ trait ModelTranslation
     protected function getTranslationOrNew()
     {
         $locale = $this->getActiveLocale();
-
+        
         if (($translation = $this->getTranslation($locale, false)) === null) {
             $translation = $this->getNewTranslation($locale);
         }
