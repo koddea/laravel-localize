@@ -48,7 +48,7 @@ class Localize
     {
 
         $locale = \Request::getPreferredLanguage();
-        if($this->hasLocale($locale)){
+        if($locale != null && $locale != "" && $this->hasLocale($locale)){
             return $locale;
         }
 
